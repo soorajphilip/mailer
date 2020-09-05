@@ -1,24 +1,29 @@
-# README
+Admin
+-
+Employees
+users:
+- string:name
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+tables:
 
-Things you may want to cover:
 
-* Ruby version
+user has_many weekly_reviews
 
-* System dependencies
+weekly_review has_many questions
+weekly_review has_many answers
 
-* Configuration
+weekly_review:
+- references:user_id   @w = WeeklyReview.new(user_id: 1, date: 30/08/2020)
+                       @review = WeeklyReview.find_by(user_id: 1)
+                       @review.questions
+                       @review.answers
 
-* Database creation
+- datetype:date
 
-* Database initialization
+questions:
+- string:question
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+answers:
+- integer:weekly_review_id
+- bigint:question_id
+- text:answer
